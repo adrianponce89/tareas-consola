@@ -1,4 +1,4 @@
-const inquired = require("inquirer");
+const inquirer = require("inquirer");
 require("colors");
 
 const menuOptions = [
@@ -22,7 +22,7 @@ const inquirerMenu = async () => {
   console.log("====================================".green);
   console.log("        Seleccione una opcion".green);
   console.log("====================================\n".green);
-  const { opcion } = await inquired.prompt(menuOptions);
+  const { opcion } = await inquirer.prompt(menuOptions);
 
   return opcion;
 };
@@ -37,7 +37,7 @@ const pauseOptions = [
 
 const pausa = async () => {
   console.log("\n".green);
-  const { opcion } = await inquired.prompt(pauseOptions);
+  const { opcion } = await inquirer.prompt(pauseOptions);
   return opcion;
 };
 
@@ -56,8 +56,46 @@ const leerInput = async (message) => {
       },
     },
   ];
-  const { descripcion } = await inquired.prompt(question);
+  const { descripcion } = await inquirer.prompt(question);
   return descripcion;
 };
 
-module.exports = { inquirerMenu, pausa, leerInput };
+const listarTareasParaBorrado = async (listado) => {
+  const choices = listado.map((tarea, i) => {
+    const idx = `${i + 1}`.green;
+    return {
+      value: tarea.id,
+      name: `${idx} ${tarea.descripcion}`,
+    };
+  });
+
+  const question = {
+    type: "list",
+    name: "id",
+    message: "Selecciona la tarea a borrar",
+    choices,
+  };
+
+  const { id } = await inquirer.prompt(question);
+  return id;
+};
+
+const confirmar = async (message) => {
+  const question = [
+    {
+      type: "confirm",
+      name: "ok",
+      message,
+    },
+  ];
+  const { ok } = await inquirer.prompt(question);
+  return ok;
+};
+
+module.exports = {
+  inquirerMenu,
+  pausa,
+  leerInput,
+  listarTareasParaBorrado,
+  confirmar,
+};

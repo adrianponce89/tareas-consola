@@ -10,6 +10,14 @@ class Tareas {
     return Object.values(this._listado);
   }
 
+  borrarTarea(id = "") {
+    if (id === "") {
+      return false;
+    }
+    delete this._listado[id];
+    return true;
+  }
+
   cargarTareas(tareas = []) {
     tareas.forEach((tarea) => {
       this._listado[tarea.id] = tarea;
@@ -41,6 +49,14 @@ class Tareas {
         i++;
       }
     });
+  }
+
+  eliminarTarea(id = "") {
+    if (id === "") {
+      return false;
+    }
+    delete this._listado[id];
+    return true;
   }
 }
 
