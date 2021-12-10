@@ -41,10 +41,12 @@ const main = async () => {
         break;
       case "6":
         const id = await listarTareasParaBorrado(tareas.listado);
-        const ok = await confirmar("¿Está seguro de eliminar la tarea?");
-        if (ok) {
-          tareas.eliminarTarea(id);
-          console.log("Tarea eliminada".red);
+        if (id !== "0") {
+          const ok = await confirmar("¿Está seguro de eliminar la tarea?");
+          if (ok) {
+            tareas.eliminarTarea(id);
+            console.log("Tarea eliminada".red);
+          }
         }
         break;
       case "0":

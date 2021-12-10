@@ -69,6 +69,11 @@ const listarTareasParaBorrado = async (listado) => {
     };
   });
 
+  choices.unshift({
+    value: "0",
+    name: `${"0".green} Cancelar`,
+  });
+
   const question = {
     type: "list",
     name: "id",
