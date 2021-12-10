@@ -1,11 +1,16 @@
 require("colors");
 const { inquirerMenu, pausa, leerInput } = require("./helpers/inquirer");
-const { guardarDB } = require("./helpers/guardarArchivo");
+const { guardarDB, leerDB } = require("./helpers/guardarArchivo");
 const Tareas = require("./models/tareas");
 
 const main = async () => {
   let opcion = "";
   const tareas = new Tareas();
+
+  const tareasDB = leerDB();
+  if (tareasDB) {
+    tareas.cargarTareas(tareasDB);
+  }
 
   do {
     console.clear();

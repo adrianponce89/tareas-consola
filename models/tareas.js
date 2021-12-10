@@ -10,6 +10,12 @@ class Tareas {
     return Object.values(this._listado);
   }
 
+  cargarTareas(tareas = []) {
+    tareas.forEach((tarea) => {
+      this._listado[tarea.id] = tarea;
+    });
+  }
+
   crearTarea(descripcion = "") {
     const tarea = new Tarea(descripcion);
     this._listado[tarea.id] = tarea;
