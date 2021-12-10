@@ -23,6 +23,7 @@ const inquirerMenu = async () => {
   console.log("        Seleccione una opcion".green);
   console.log("====================================\n".green);
   const { opcion } = await inquired.prompt(menuOptions);
+
   return opcion;
 };
 
@@ -40,4 +41,23 @@ const pausa = async () => {
   return opcion;
 };
 
-module.exports = { inquirerMenu, pausa };
+const leerInput = async (message) => {
+  const question = [
+    {
+      type: "input",
+      name: "descripcion",
+      message,
+      validate: (value) => {
+        if (value.length) {
+          return true;
+        } else {
+          return "Este campo es obligatorio";
+        }
+      },
+    },
+  ];
+  const { descripcion } = await inquired.prompt(question);
+  return descripcion;
+};
+
+module.exports = { inquirerMenu, pausa, leerInput };
