@@ -25,10 +25,10 @@ const main = async () => {
         tareas.listarTareas();
         break;
       case "3":
-        console.log("listarCompletadas");
+        tareas.listarTareasCompletadasPendientes(true);
         break;
       case "4":
-        console.log("listarPendientes");
+        tareas.listarTareasCompletadasPendientes(false);
         break;
       case "5":
         console.log("completar");
