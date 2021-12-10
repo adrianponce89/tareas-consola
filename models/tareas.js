@@ -58,6 +58,12 @@ class Tareas {
     delete this._listado[id];
     return true;
   }
+
+  completarTareas(ids = []) {
+    this.listado.forEach((tarea) => {
+      tarea.completada = ids.includes(tarea.id);
+    });
+  }
 }
 
 module.exports = Tareas;
